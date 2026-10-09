@@ -1,0 +1,16 @@
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+df = pd.read_csv("customer_purchase.csv")
+print(df)
+
+model = LogisticRegression()
+model.fit(df[["Age"]], df["Purchased"])
+
+print("Model trained successfully!")
+
+customer = pd.DataFrame({"Age": [40]})
+result = model.predict(customer)
+
+print("Customer Age: 40")
+print("Prediction:", "Purchased" if result[0] == 1 else "Not Purchased")
